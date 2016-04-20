@@ -10,14 +10,168 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <link href="css/bootstrap.min.css" rel="stylesheet">
 <title>
-Jepey
+The code of WEECALC
 </title>
 <body style=background-color:#151515;>
-<h1 style=color:white;font-size:80px;margin-left:50px;font-family:sans-serif;>Jepey</h1>
-<p style=color:grey;font-size:20px;margin-left:50px;font-family:sans-serif;margin-top:-30px;>Java, HTML and Android developer.</p>
-<p style=color:white;font-size:50px;margin-left:50px;font-family:sans-serif;><b>Projects</b></p>
-<p style=color:white;font-size:35px;margin-left:50px;font-family:sans-serif;margin-top:-30px;>Weekend calculator app.</p>
-<p style=color:grey;font-size:31px;margin-left:50px;font-family:sans-serif;margin-top:-40px;><a href="jepey.github.io/weecalcandroid">jepey.github.io/weecalcandroid</p>
-<hr style=background-color:white;height:1px;length:800px;margin-left:40px;>
-</body>
+<h1 style=color:white;font-size:80px;margin-left:50px;font-family:sans-serif;>MainActivity.java</h1>
+<p style=color:grey;font-size:20px;margin-left:50px;font-family:sans-serif;margin-top:-30px;>package desired.test2;
+
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity {
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       setSupportActionBar(toolbar);
+
+   }
+
+   @Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+       // Inflate the menu; this adds items to the action bar if it is present.
+       getMenuInflater().inflate(R.menu.menu_main, menu);
+       return true;
+   }
+
+   @Override
+   public boolean onOptionsItemSelected(MenuItem item) {
+       // Handle action bar item clicks here. The action bar will
+       // automatically handle clicks on the Home/Up button, so long
+       // as you specify a parent activity in AndroidManifest.xml.
+       int id = item.getItemId();
+
+       //noinspection SimplifiableIfStatement
+       if (id == R.id.action_settings) {
+           return true;
+       }
+
+       return super.onOptionsItemSelected(item);
+   }
+
+   public void calculate(View view) {
+           Calendar calendar = Calendar.getInstance();
+
+           int day = calendar.get(Calendar.DAY_OF_WEEK);
+           int hour = calendar.get(Calendar.HOUR_OF_DAY);
+           int minute = calendar.get(Calendar.MINUTE);
+           int second = calendar.get(Calendar.SECOND);
+
+           int realDate = 330;
+
+           if (day == 1) {
+               realDate = 6;
+           } else if (day == 2) {
+               realDate = 0;
+           } else if (day == 3) {
+               realDate = 1;
+           } else if (day == 4) {
+               realDate = 2;
+           } else if (day == 5) {
+               realDate = 3;
+           } else if (day == 6) {
+               realDate = 4;
+           } else if (day == 7) {
+               realDate = 5;
+           }
+           int hours = (realDate * 24) + hour;
+           int minutes = (hours * 60) + minute;
+           int seconds = (minutes * 60) + second;
+
+           DecimalFormat df5 = new DecimalFormat(".#####");
+           if (seconds <= 432000) {
+               double originalpercent = 0.00023148148148148;
+               double percent = originalpercent * seconds;
+               TextView doublePercent = (TextView) findViewById(R.id.random);
+               String stringPercent = String.valueOf(df5.format(percent));
+               doublePercent.setText(stringPercent);
+           } else {
+               int textHundred = 100;
+               TextView hundred = (TextView) findViewById(R.id.random);
+               String stringHundred = String.valueOf(textHundred);
+               hundred.setText(stringHundred);
+           }
+       }
+   }
+</p>
+<h1 style=color:white;font-size:80px;margin-left:50px;font-family:sans-serif;>content_main.xml</h1>
+<p style=color:grey;font-size:20px;margin-left:50px;font-family:sans-serif;margin-top:-30px;><?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:paddingBottom="@dimen/activity_vertical_margin"
+   android:paddingLeft="@dimen/activity_horizontal_margin"
+   android:paddingRight="@dimen/activity_horizontal_margin"
+   android:paddingTop="@dimen/activity_vertical_margin"
+   app:layout_behavior="@string/appbar_scrolling_view_behavior"
+   tools:context="desired.test2.MainActivity"
+   tools:showIn="@layout/activity_main">
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text=""
+       android:textSize="30sp"
+       android:id="@+id/random"
+       android:layout_alignParentTop="true"
+       android:layout_centerHorizontal="true" />
+
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="CAlCULATE!"
+       android:id="@+id/button"
+       android:onClick="calculate"
+       android:layout_centerVertical="true"
+       android:layout_centerHorizontal="true" />
+
+   <TextView
+       android:alpha="0.3"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:text="Weekend Calculator V1.0"
+       android:id="@+id/textView2"
+       android:layout_above="@+id/textView3"
+       android:layout_alignEnd="@+id/button" />
+
+   <TextView
+       android:alpha="0.3"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:text="Made by Jepey and Zwebfek"
+       android:id="@+id/textView3"
+       android:layout_marginBottom="46dp"
+       android:layout_alignParentBottom="true"
+       android:layout_alignParentStart="true" />
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:text=""
+       android:id="@+id/textView4"
+       android:layout_above="@+id/button"
+       android:layout_centerHorizontal="true"
+       android:layout_marginBottom="52dp" />
+</RelativeLayout>
+</p>
+
 </html>
