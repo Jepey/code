@@ -16,95 +16,95 @@ The code of WEECALC
 <h1 style=color:white;font-size:80px;margin-left:50px;font-family:sans-serif;>MainActivity.java</h1>
 <p style=color:grey;font-size:20px;margin-left:50px;font-family:sans-serif;margin-top:-30px;>package desired.test2;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
+import android.os.Bundle;<br>
+import android.support.design.widget.FloatingActionButton;<br>
+import android.support.design.widget.Snackbar;<br>
+import android.support.v7.app.AppCompatActivity;<br>
+import android.support.v7.widget.Toolbar;<br>
+import android.view.View;<br>
+import android.view.Menu;<br>
+import android.view.MenuItem;<br>
+import android.widget.TextView;<br>
+<br>
+import java.text.DecimalFormat;<br>
+import java.util.Calendar;<br>
+import java.util.Random;<br>
 
-import java.text.DecimalFormat;
-import java.util.Calendar;
-import java.util.Random;
-
-public class MainActivity extends AppCompatActivity {
-
-   @Override
-   protected void onCreate(Bundle savedInstanceState) {
-       super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_main);
-       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       setSupportActionBar(toolbar);
-
-   }
-
-   @Override
-   public boolean onCreateOptionsMenu(Menu menu) {
-       // Inflate the menu; this adds items to the action bar if it is present.
-       getMenuInflater().inflate(R.menu.menu_main, menu);
-       return true;
-   }
-
-   @Override
-   public boolean onOptionsItemSelected(MenuItem item) {
-       // Handle action bar item clicks here. The action bar will
-       // automatically handle clicks on the Home/Up button, so long
-       // as you specify a parent activity in AndroidManifest.xml.
-       int id = item.getItemId();
-
-       //noinspection SimplifiableIfStatement
-       if (id == R.id.action_settings) {
-           return true;
-       }
-
-       return super.onOptionsItemSelected(item);
-   }
-
-   public void calculate(View view) {
-           Calendar calendar = Calendar.getInstance();
-
-           int day = calendar.get(Calendar.DAY_OF_WEEK);
-           int hour = calendar.get(Calendar.HOUR_OF_DAY);
-           int minute = calendar.get(Calendar.MINUTE);
-           int second = calendar.get(Calendar.SECOND);
-
-           int realDate = 330;
-
-           if (day == 1) {
-               realDate = 6;
-           } else if (day == 2) {
-               realDate = 0;
-           } else if (day == 3) {
-               realDate = 1;
-           } else if (day == 4) {
-               realDate = 2;
-           } else if (day == 5) {
-               realDate = 3;
-           } else if (day == 6) {
-               realDate = 4;
-           } else if (day == 7) {
-               realDate = 5;
-           }
-           int hours = (realDate * 24) + hour;
-           int minutes = (hours * 60) + minute;
-           int seconds = (minutes * 60) + second;
-
-           DecimalFormat df5 = new DecimalFormat(".#####");
-           if (seconds <= 432000) {
-               double originalpercent = 0.00023148148148148;
-               double percent = originalpercent * seconds;
-               TextView doublePercent = (TextView) findViewById(R.id.random);
-               String stringPercent = String.valueOf(df5.format(percent));
-               doublePercent.setText(stringPercent);
-           } else {
-               int textHundred = 100;
-               TextView hundred = (TextView) findViewById(R.id.random);
-               String stringHundred = String.valueOf(textHundred);
-               hundred.setText(stringHundred);
-           }
+public class MainActivity extends AppCompatActivity {<br>
+<br>
+   @Override<br>
+   protected void onCreate(Bundle savedInstanceState) {<br>
+       super.onCreate(savedInstanceState);<br>
+       setContentView(R.layout.activity_main);<br>
+       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);<br>
+       setSupportActionBar(toolbar);<br>
+<br>
+   }<br>
+<br>
+   @Override<br>
+   public boolean onCreateOptionsMenu(Menu menu) {<br>
+       // Inflate the menu; this adds items to the action bar if it is present.<br>
+       getMenuInflater().inflate(R.menu.menu_main, menu);<br>
+       return true;<br>
+   }<br>
+<br>
+   @Override<br>	
+   public boolean onOptionsItemSelected(MenuItem item) {<br>
+       // Handle action bar item clicks here. The action bar will<br>
+       // automatically handle clicks on the Home/Up button, so long<br>
+       // as you specify a parent activity in AndroidManifest.xml.<br>
+       int id = item.getItemId();<br>
+<br>
+       //noinspection SimplifiableIfStatement<br>
+       if (id == R.id.action_settings) {<br>
+           return true;<br>
+       }<br>
+<br>
+       return super.onOptionsItemSelected(item);<br>
+   }<br>
+<br>
+   public void calculate(View view) {<br>
+           Calendar calendar = Calendar.getInstance();<br>
+<br>
+           int day = calendar.get(Calendar.DAY_OF_WEEK);<br>
+           int hour = calendar.get(Calendar.HOUR_OF_DAY);<br>
+           int minute = calendar.get(Calendar.MINUTE);<br>
+           int second = calendar.get(Calendar.SECOND);<br>
+<br>
+           int realDate = 330;<br>
+<br>
+           if (day == 1) {<br>
+               realDate = 6;<br>
+           } else if (day == 2) {<br>
+               realDate = 0;<br>
+           } else if (day == 3) {<br>
+               realDate = 1;<br>
+           } else if (day == 4) {<br>
+               realDate = 2;<br>
+           } else if (day == 5) {<br>
+               realDate = 3;<br>
+           } else if (day == 6) {<br>
+               realDate = 4;<br>
+           } else if (day == 7) {<br>
+               realDate = 5;<br>
+           }<br>
+           int hours = (realDate * 24) + hour;<br>
+           int minutes = (hours * 60) + minute;<br>
+           int seconds = (minutes * 60) + second;<br>
+<br>
+           DecimalFormat df5 = new DecimalFormat(".#####");<br>
+           if (seconds <= 432000) {<br>
+               double originalpercent = 0.00023148148148148;<br>
+               double percent = originalpercent * seconds;<br>
+               TextView doublePercent = (TextView) findViewById(R.id.random);<br>
+               String stringPercent = String.valueOf(df5.format(percent));<br>
+               doublePercent.setText(stringPercent);<br>
+           } else {<br>
+               int textHundred = 100;<br>
+               TextView hundred = (TextView) findViewById(R.id.random);<br>
+               String stringHundred = String.valueOf(textHundred);<br>
+               hundred.setText(stringHundred);<br>
+           }<br>
        }
    }
 </p>
